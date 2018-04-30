@@ -201,10 +201,37 @@ exec((something) => {
   console.log(something)
 }, 'Hello World')
 ```
+You could use ```window.setTimeout(func, delay, params)``` to do the same thing, but the event in that case would be waiting 3000ms, or 3 seconds.
 
 
+**Listening for Events** with ```addEventListener()```
+First you select an element with one of the various ```document.``` methods, then from those results you can register, or attach an event listener to those elements. Pass ```.addEventListener()``` a string that represents the type of event you are listening for, and then a function to be run when that event is encountered.
 
+Now if you want to add event listeners to a bunch of elements, check out example8. In that we get a collection of ```li``` elements and then loop over them with a ```for``` loop, attaching event listeners as we go:
+```javascript
+const listItems = document.getElementsByTagName('li')
 
+for (let i = 0; i < listItems.length; i++) {
+  listItems[i].addEventListener('mouseover', () => {
+    listItems[i].textContent = listItems[i].textContent.toUpperCase()
+  })
+
+  listItems[i].addEventListener('mouseout', () => {
+    listItems[i].textContent = listItems[i].textContent.toLowerCase()
+  })
+}
+```
+This does create a problem for our example however. How do we add this behaviour for any new list items that have been added through JS, after the page has loaded and the script has already run?
+
+The issues is multipart. Firstly, the above is not a great way to use event listeners. This is because it is useing a bunch of memory to have all those listeners on all those elements. Instead we can use _bubbling_ and listen on their parent element. Doing it this way would also allow us to make the behaviour appear on any children that are added after the initial page load.
+```javascript
+listDiv.addEventListener('mouseover', (event) => {
+  if (event.target.tagName == 'LI') {
+    event.target.textContent = event.target.textContent.toUpperCase()
+  }
+})
+```
+The part that slipped me up the first time was that I was not expecting the ```.tagName``` value to be in all caps. Apparently it is and it matters. Anyway, we can determine which child triggered the event if we pass an ```event object``` to the event listener. With it's various methods and valuse we can determin it's name, type and element data. This is in /example9
 
 
 
