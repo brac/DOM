@@ -278,7 +278,12 @@ Check out /example10 to see this in action. But basically we are adding an event
 
 If it is a button with class ```remove```, then find the parent node and remove the element associated.
 
-If it is a button with class ```up```, then again find the parent node
+If it is a button with class ```up```, then again find the parent node but in addition to we find the previous element sibliing with the relevant method. Assuming we got a return, then we ```.insertBefore()``` by passing it our line element and then our previouls line element. Check out /example10
+
+
+In /example11 we add a down button. In order to get this to work we use the opposite of selecting the previous sibiling and select the ```.nextElementSibling```. Now that's only have the battle. There is no ```.insertAfter()``` method so we need to again use ```.insertBefore()``` but this time, pass the line element and then the previous line element. You need to reverse your thinking to get how that works. I think it means that now the item to be inserted is the previous element and the reference item is the element we selected, thus it adds the selectd element ahead of the 'previous' element.
+
+
 
 
 
