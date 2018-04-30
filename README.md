@@ -234,7 +234,51 @@ listDiv.addEventListener('mouseover', (event) => {
 The part that slipped me up the first time was that I was not expecting the ```.tagName``` value to be in all caps. Apparently it is and it matters. Anyway, we can determine which child triggered the event if we pass an ```event object``` to the event listener. With it's various methods and valuse we can determin it's name, type and element data. This is in /example9
 
 
+#### Traversing the DOM
+How to get the parent node when you don't know it outright? You can use ```.parentNode``` on your element or ```event.target``` and that will get you into the parent. This is useful for consolidating event listners and handeling events. And other things too, I bet.
+```javascript
+listUl.addEventListener('click', (event) => {
+  if (event.target.tagName == 'BUTTON' ) {
+    let li = event.target.parentNode
+    let ul = li.parentNode
+    ul.removeChild(li)
+  }
+})
+```
+The above is an example that traverse the DOM to get to the right parent node. Note how we've twice moved up the chain.
 
+**NOTE** You can use these same query selectors on collections of elements, as in these methods are also avaiable to the elements individualy as well as the ```document```.
+
+
+#### previousElementSibling and insertBefore
+These are two methods that you can use to move around the dom. ```previousElementSibling``` is better than ```previsouSibling``` as the later does not always return a DOM element. ```insertBefore``` will insert an element before a provided reference element. So that method, ```insertBefore()``` takes 3 nodess as arguments. As always, read them documentation.
+
+```javascript
+listUl.addEventListener('click', (event) => {
+  if (event.target.tagName == 'BUTTON' ) {
+    if (event.target.className == 'remove') {
+      let li = event.target.parentNode
+      let ul = li.parentNode
+      ul.removeChild(li)
+    }
+
+    if (event.target.className == 'up') {
+     let li = event.target.parentNode
+     let ul = li.parentNode
+     let prevLi = li.previousElementSibling
+
+     if (prevLi) {
+       ul.insertBefore(li, prevLi)
+     }
+   }
+  }
+})
+```
+Check out /example10 to see this in action. But basically we are adding an event listener to the parent ```ul``` element. If an event is fired on a button, then do 1 of three things;
+
+If it is a button with class ```remove```, then find the parent node and remove the element associated.
+
+If it is a button with class ```up```, then again find the parent node
 
 
 
