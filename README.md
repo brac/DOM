@@ -167,7 +167,40 @@ Basically we grouped our things to be hidden in a ```div```, and then made a but
 But wait, there was a problem. Looks like we had two buttons that were both firing, so this new hide button also fired our chage list description button. In order to fix this we made our selections more specefic. This worked because every element that went into that change list description button also had a class, ```.description```. So when we selected those elements at the start of our script, we grabbed those that also had that class, thus ensuring that the buttons fire seperatly.
 
 
+#### Creating new Elements
+You can use ```document.createElement('elementStringName')``` to create a free floaing element node. Check out /example6 to see how this could work.
 
+However, you still need to insert it into the DOM. In order to do that you need to use ```element.appendChild(nodeName)```. This will stick the floating node under the element that is having the ```.appendChild()``` made made. Note that Nodes and elements are the same thing, but a Node usually referes to a node in the DOM while an element is an element from the HTML. Still, basically the same thing.
+
+
+#### Removing Elements
+To remove an element you can use ```element.removeChild('nodeName')```. It works much the same way as appending a child, just in reverse. Check out example 7.
+
+
+
+#### Events
+Common Events:
+- click
+- dblclick
+- mousedown
+- mouseup
+- mousemove
+- mouseover
+- touchend
+- load
+- [More](https://developer.mozilla.org/en-US/docs/Web/Events)
+
+Remember that you can pass functions as arguments, or parameters to other functions. Since functions are first class citizens, they can be passed into and run by other functions just like integers, floats, variables and otherwise. The following illustrates this.
+```javascript
+// jshint asi:true
+function exec(func, arg) {
+  func(arg)
+}
+
+exec((something) => {
+  console.log(something)
+}, 'Hello World')
+```
 
 
 

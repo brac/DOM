@@ -1,20 +1,21 @@
 // jshint asi:true
 
-const toggleList = document.getElementById('toggleList')
-const listDiv = document.querySelector('.list')
-const descriptionInput = document.querySelector('input.description')
-const descriptionP = document.querySelector('p.description')
+const toggleList        = document.querySelector('#toggleList')
+const listDiv           = document.querySelector('.list')
+const descriptionInput  = document.querySelector('input.description')
+const descriptionP      = document.querySelector('p.description')
 const descriptionButton = document.querySelector('button.description')
-const addItemInput = document.querySelector('input.addItemInput')
-const addItemButton = document.querySelector('button.addItemButton')
-const removeItemButton = document.querySelector('button.removeItemButton')
+const addItemInput      = document.querySelector('input.addItemInput')
+const addItemButton     = document.querySelector('button.addItemButton')
+const removeItemButton  = document.querySelector('button.removeItemButton')
+
 
 toggleList.addEventListener('click', () => {
-  if (listDiv.style.display == 'none') {
-    toggleList.textContent = 'Hide list'
+  if (listDiv.style.display === 'none') {
+    toggleList.textContent = 'Hide List'
     listDiv.style.display = 'block'
   } else {
-    toggleList.textContent = 'Show list'
+    toggleList.textContent = 'Show List'
     listDiv.style.display = 'none'
   }
 })
@@ -37,9 +38,4 @@ removeItemButton.addEventListener('click', () => {
   let li = document.querySelector('li:last-child')
   ul.removeChild(li)
 })
-
-
-
-
-
 
