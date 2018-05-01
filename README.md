@@ -302,6 +302,9 @@ for (let i = 0; i < lis.length; i++) {
 ```
 Better stuff.
 
+Don't forget the use of ```.firstElementChild``` and ```.lastElementChild```. These can be used to get the first and last children of an html element.
+```let firstElement = listUi.firstchildElement```
+
 
 
 
