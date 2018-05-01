@@ -284,6 +284,25 @@ If it is a button with class ```up```, then again find the parent node but in ad
 In /example11 we add a down button. In order to get this to work we use the opposite of selecting the previous sibiling and select the ```.nextElementSibling```. Now that's only have the battle. There is no ```.insertAfter()``` method so we need to again use ```.insertBefore()``` but this time, pass the line element and then the previous line element. You need to reverse your thinking to get how that works. I think it means that now the item to be inserted is the previous element and the reference item is the element we selected, thus it adds the selectd element ahead of the 'previous' element.
 
 
+**Getting all Children**
+```let kids = el.children```
+For this example, we are going to refactor our page. So now, our ```li```s will not have any buttons on them from the HTML. Instead, we will add those with Javascript. This is in /example12.
+
+For this we wrote a function that would add these buttons. This function would take a ```li```, and add the buttons. So in the func we defined the className, textcontent and element itself before appending it to the ```li```.
+
+Next, we went to where we added our event listener b/c this is where we also get the current list of ```li```s. In there we ran our new function. So this means that it will work for any new items but not the old ones.
+
+To get that working we add a for loop and loop through all the ```.children``` (see what I did there) adding buttons as we go.
+```javascript
+const lis = listUl.children
+
+for (let i = 0; i < lis.length; i++) {
+  addListItemButtons(lis[i])
+}
+```
+Better stuff.
+
+
 
 
 
