@@ -10,10 +10,13 @@ function createLI(text) {
   const checkbox = document.createElement('input');
   checkbox.type = 'checkbox';
   label.appendChild(checkbox);
-  li.appendChild(label);  
-  const button = document.createElement('button');
-  button.textContent = 'remove';
-  li.appendChild(button);
+  li.appendChild(label);
+  const editButton = document.createElement('button');
+  editButton.textContent = 'edit';
+  li.appendChild(editButton);
+  const removeButton = document.createElement('button');
+  removeButton.textContent = 'remove';
+  li.appendChild(removeButton);
   return li;
 }
 
@@ -24,33 +27,38 @@ form.addEventListener('submit', (e) => {
   const li = createLI(text);
   ul.appendChild(li);
 });
-  
+
 ul.addEventListener('change', (e) => {
   const checkbox = event.target;
   const checked = checkbox.checked;
   const listItem = checkbox.parentNode.parentNode;
-  
+
   if (checked) {
     listItem.className = 'responded';
   } else {
     listItem.className = '';
   }
 });
-  
+
 ul.addEventListener('click', (e) => {
   if (e.target.tagName === 'BUTTON') {
-    const li = e.target.parentNode;
+    const button  = e.target;
+    const li = button.parentNode;
     const ul = li.parentNode;
-    ul.removeChild(li);
+
+    if (button.textContent === 'remove') {
+      ul.removeChild(li);
+    } else if (button.textContent === 'edit') {
+      console.log('edit');
+    }
   }
-});  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+});
+
+
+
+
+
+
+
+
+
